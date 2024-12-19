@@ -1,16 +1,16 @@
-export const Person = ({ person }) => (
-  <div>
-    <h2 className="Person__name">{`My name is ${person.name}`}</h2>
+export const Person = ({ person }) => {
+  const partnerType = person.sex === 'm' ? 'wife' : 'husband';
+  const personPartner = person.isMarried
+    ? `${person.partnerName} is my ${partnerType}`
+    : 'I am not married';
 
-    {person.age && <p className="Person__age">{`My name is ${person.age}`}</p>}
+  return (
+    <div>
+      <h2 className="Person__name">{`My name is ${person.name}`}</h2>
 
-    <p className="Person__partner">
-      {person.sex === 'm' && person.isMarried
-        ? `My wife is ${person.partnerName}`
-        : ''}
-      {person.sex === 'f' && person.isMarried
-        ? `My husband is ${person.partnerName}`
-        : ''}
-    </p>
-  </div>
-);
+      {person.age && <p className="Person__age">{`My age is ${person.age}`}</p>}
+
+      <p className="Person__partner">{personPartner}</p>
+    </div>
+  );
+};
